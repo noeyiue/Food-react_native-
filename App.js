@@ -1,22 +1,23 @@
-import React from 'react'
-import { Image, ImageComponent, ScrollView, Text, TextInput, View } from 'react-native'
+import React from "react";
 
-const App = () => {
+import {View, Text, StyleSheet, StatusBar} from 'react-native';
+import { colors } from "./src/global/styles";
+import { SignInScreens } from "./src/screens/authScreens/SignInScreen";
+
+
+export default function App(){
   return (
-    <ScrollView>
-      <Text>Text</Text>
-      <View>
-        <Text>Text</Text>
-        <Image 
-          source={{ uri: 'https://reactnative.dev/docs/assets/p_cat2.png', }}
-          style={{ width: 200, height: 200}}></Image>
-      </View>
-      <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1}}
-          // defaultValue="Input"
-          placeholder='Input'></TextInput>
-    </ScrollView>
+    <View style = {styles.container}>
+      <StatusBar 
+        barStyle = "light-content"
+        backgroundColor = {colors.statusbar}
+      />
+      <SignInScreens />
+      
+    </View>
   )
 }
 
-export default App
+const styles = StyleSheet.create({
+  container: {flex: 1}
+})
