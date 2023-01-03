@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import Header from "../../components/Header";
-import { colors, title } from "../../global/styles";
+import { colors, parameters, title } from "../../global/styles";
 import * as Animatable from 'react-native-animatable';
-import { Icon } from "@rneui/themed";
+import { Button, Icon } from "@rneui/themed";
 
 
 
@@ -16,7 +16,9 @@ export function SignInScreens() {
 
 
     return (
-        <View style = {styles.container}>
+        <View>
+        {/* <View style = {styles.container}> */}
+
             <Header title="MY ACCOUNT" type="arrow-left"/>
 
             <View style = {{marginLeft: 20, marginTop: 10}}>
@@ -37,24 +39,24 @@ export function SignInScreens() {
                     />
                 </View>
                 <View style = {styles.TextInput2}>
-                    <Animatable.View>
+                    <Animatable.View animation={textInput2Focussed ? "":"fadeInLeft"} duration = {400}>
                         <Icon 
                             name="lock"
                             iconStyle={{color: colors.grey3}}
 
                         />
                     </Animatable.View>
-                        <TextInput 
-                            style={{width:"80%"}}
-                            placeholder="Password"
-                            ref={textInput2}
-                            onFocus = {() => {
-                                setTextInput2Focussed(false);
-                            }}
-                            onBlur={() => {
-                                setTextInput2Focussed(true);
-                            }}
-                        />
+                    <TextInput 
+                        style={{width:"80%"}}
+                        placeholder="Password"
+                        ref={textInput2}
+                        onFocus = {() => {
+                            setTextInput2Focussed(false);
+                        }}
+                        onBlur={() => {
+                            setTextInput2Focussed(true);
+                        }}
+                    />
                     <Animatable.View animation={textInput2Focussed ? "":"fadeInLeft"} duration = {400}>
                         <Icon 
                             name="visibility-off"
@@ -64,6 +66,20 @@ export function SignInScreens() {
                     </Animatable.View>
                 </View>
             </View>
+
+            <View style = {{marginHorizontal:20, marginVertical:30}}>
+                <Button 
+                    title="SIGN IN"
+                    buttonStyle = {parameters.styledButton}
+                    titleStyle = {parameters.buttonTitle}
+                />
+            </View>
+
+            <View>
+                <Text style = {{...styles.text1}}>Forgot Password ?</Text>
+                {/* <Text style = {styles.text1}>Forgot Password ?</Text> */}
+            </View>
+
         </View>
     )
 }
@@ -74,6 +90,7 @@ const styles = StyleSheet.create({
     },
     text1: {
         color: colors.grey3,
+        // color: "red",
         fontSize: 16,
     },
     TextInput1: {
